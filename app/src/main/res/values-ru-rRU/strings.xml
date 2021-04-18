@@ -3,4 +3,6 @@
     <string name="app_name">НМедиа</string>
     <string name="center_text">НМедиа</string>
     <string name="button">Кнопка</string>
+    <string name="post_avatar">Аватар поста</string>
+    <string name="author_avatar">Аватар автора</string>
 </resources>
