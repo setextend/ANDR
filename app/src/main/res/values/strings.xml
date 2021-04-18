@@ -5,4 +5,7 @@
     <string name="post_avatar">Post avatar</string>
     <string name="author_avatar">Author avatar</string>
     <string name="menu">menu</string>
+    <string name="likes">likes</string>
+    <string name="share">share</string>
+    <string name="views">views</string>
 </resources>
