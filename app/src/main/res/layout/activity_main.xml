@@ -50,7 +50,7 @@
         android:layout_height="@dimen/posts_avatar_size"
         android:backgroundTint="@color/ic_launcher_background"
         android:contentDescription="@string/menu"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/avatar"
         app:srcCompat="@drawable/ic_baseline_more_vert_24" />
@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintTop_toBottomOf="@id/barrier_top"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_content"
         tools:text="@sample/posts.json/data/content" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -78,34 +79,39 @@
         app:constraint_referenced_ids="content" />
 
 
-    <ImageView
+    <ImageButton
         android:id="@+id/likes"
         android:layout_width="@dimen/posts_avatar_size"
         android:layout_height="@dimen/posts_avatar_size"
         android:layout_marginTop="@dimen/common_spacing"
+        android:background="@color/design_default_color_background"
         android:contentDescription="@string/likes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_content"
         app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/share"
         android:layout_width="@dimen/posts_avatar_size"
         android:layout_height="@dimen/posts_avatar_size"
         android:layout_marginStart="@dimen/common_spacing"
+        android:background="@color/design_default_color_background"
         android:contentDescription="@string/share"
         app:layout_constraintBottom_toBottomOf="@+id/likes"
         app:layout_constraintStart_toEndOf="@+id/likes_count"
         app:layout_constraintTop_toTopOf="@+id/likes"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/views"
         android:layout_width="@dimen/posts_avatar_size"
         android:layout_height="@dimen/posts_avatar_size"
+        android:background="@color/design_default_color_background"
         android:contentDescription="@string/views"
-        app:layout_constraintBottom_toBottomOf="@+id/likes"
-        app:layout_constraintTop_toTopOf="@+id/likes"
+        android:layout_marginHorizontal="@dimen/common_spacing"
+        app:layout_constraintBottom_toBottomOf="@id/likes"
+        app:layout_constraintTop_toTopOf="@id/likes"
+        app:layout_constraintEnd_toStartOf="@id/views_count"
         app:srcCompat="@drawable/ic_baseline_visibility_24"
         tools:layout_editor_absoluteX="283dp" />
 
@@ -126,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
         app:layout_constraintBottom_toBottomOf="@id/share"
-        app:layout_constraintStart_toEndOf="@+id/share"
+        app:layout_constraintStart_toEndOf="@id/share"
         app:layout_constraintTop_toTopOf="@id/share"
         tools:text="@sample/posts.json/data/share" />
 
@@ -135,9 +141,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/views"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/views"
+        app:layout_constraintBottom_toBottomOf="@id/views"
         app:layout_constraintTop_toTopOf="@id/views"
         tools:text="@sample/posts.json/data/visibility" />
 
