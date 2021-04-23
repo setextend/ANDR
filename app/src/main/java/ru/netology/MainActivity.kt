@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity() {
                 likes?.setImageResource(R.drawable.ic_baseline_favorite_redone_24)
             }
 
+            root.setOnClickListener {
+                    viewsCount.text = post.views++.toString()
+            }
+
             likes?.setOnClickListener {
                 post.likedByMe = !post.likedByMe
                 likes?.setImageResource(
