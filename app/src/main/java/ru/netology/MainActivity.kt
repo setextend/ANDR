@@ -68,8 +68,19 @@ class MainActivity : AppCompatActivity() {
 
 
     fun dealWithNumbers(number: Long): String{
-        if (number < 1000) return number.toString()
-        if (number < 1000_000) return (number/1000).toDouble().toString()+"K"
-        else return (number/1000_000).toDouble().toString()+"M"
+        return when {
+            number < 1000 -> number.toString()
+            number < 1000_000 -> roundIfNeeded((number/1000).toDouble())+"K"
+            else -> roundIfNeeded((number/1000_000).toDouble())+"M"
+        }
+    }
+
+    fun roundIfNeeded(number: Double): String{
+        val numberButThree = number.toString().take(3)
+        return when {
+            numberButThree.endsWith(".") -> numberButThree.take(2)
+            numberButThree.endsWith(".0") -> numberButThree.take(1)
+            else -> number.toString()
+        }
     }
 }
