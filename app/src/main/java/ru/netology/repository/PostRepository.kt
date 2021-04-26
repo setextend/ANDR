@@ -6,4 +6,5 @@ import ru.netology.Post
 interface PostRepository {
     fun get(): LiveData<Post>
     fun like()
+    fun share()
 }
