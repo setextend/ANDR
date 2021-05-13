@@ -2,6 +2,8 @@ package ru.netology.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.R
 import ru.netology.databinding.CardPostBinding
@@ -9,12 +11,9 @@ import ru.netology.dto.Post
 
 typealias LikeListener = (Post) -> Unit
 
-class PostAdapter(val likeListener: LikeListener) : RecyclerView.Adapter<PostViewHolder>() {
-    var list = emptyList<Post>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class PostAdapter(val likeListener: LikeListener) :
+    ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,17 +21,14 @@ class PostAdapter(val likeListener: LikeListener) : RecyclerView.Adapter<PostVie
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val post = list[position]
+        val post = getItem(position)
         holder.bind(post)
-
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
 }
 
-class PostViewHolder(val binding: CardPostBinding,val likeListener: LikeListener) : RecyclerView.ViewHolder(binding.root) {
+class PostViewHolder(val binding: CardPostBinding, val likeListener: LikeListener) :
+    RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
         with(binding) {
@@ -79,6 +75,17 @@ class PostViewHolder(val binding: CardPostBinding,val likeListener: LikeListener
             numberButThree.endsWith(".0") -> numberButThree.take(1)
             else -> number.toString()
         }
+    }
+
+}
+
+class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
+    override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+        return oldItem == newItem
     }
 
 }
