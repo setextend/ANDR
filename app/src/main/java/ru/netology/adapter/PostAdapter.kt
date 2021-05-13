@@ -9,15 +9,19 @@ import ru.netology.R
 import ru.netology.databinding.CardPostBinding
 import ru.netology.dto.Post
 
-typealias LikeListener = (Post) -> Unit
 
-class PostAdapter(val likeListener: LikeListener) :
+interface AdapterCallBack {
+    fun liked(post: Post)
+    fun shared(post: Post)
+}
+
+class PostAdapter(private val listener: AdapterCallBack) :
     ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, likeListener)
+        return PostViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -27,7 +31,7 @@ class PostAdapter(val likeListener: LikeListener) :
 
 }
 
-class PostViewHolder(val binding: CardPostBinding, val likeListener: LikeListener) :
+class PostViewHolder(private val binding: CardPostBinding, private val listener: AdapterCallBack) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
@@ -46,7 +50,7 @@ class PostViewHolder(val binding: CardPostBinding, val likeListener: LikeListene
             likesCount.text = dealWithNumbers(post.likes)
 
             likes.setOnClickListener {
-                likeListener(post)
+                listener.liked(post)
             }
 
             share.setImageResource(
@@ -55,12 +59,16 @@ class PostViewHolder(val binding: CardPostBinding, val likeListener: LikeListene
                 else
                     R.drawable.ic_baseline_share_24
             )
+            share.setOnClickListener {
+                listener.shared(post)
+            }
+
             shareCount.text = dealWithNumbers(post.shares)
             viewsCount.text = dealWithNumbers(post.views)
         }
     }
 
-    fun dealWithNumbers(number: Long): String {
+    private fun dealWithNumbers(number: Long): String {
         return when {
             number < 1000 -> number.toString()
             number < 1000_000 -> roundIfNeeded((number / 1000).toDouble()) + "K"
@@ -68,7 +76,7 @@ class PostViewHolder(val binding: CardPostBinding, val likeListener: LikeListene
         }
     }
 
-    fun roundIfNeeded(number: Double): String {
+    private fun roundIfNeeded(number: Double): String {
         val numberButThree = number.toString().take(3)
         return when {
             numberButThree.endsWith(".") -> numberButThree.take(2)
