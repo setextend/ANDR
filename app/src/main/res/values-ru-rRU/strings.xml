@@ -9,4 +9,5 @@
     <string name="likes">понравилось</string>
     <string name="share">поделиться</string>
     <string name="views">просмотров</string>
+    <string name="menu_remove">удалить</string>
 </resources>

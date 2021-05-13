@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
             override fun liked(post: Post) {
                 viewModel.likeById(post.id)
             }
+
+            override fun deleted(post: Post) {
+                viewModel.removeById(post.id)
+            }
         })
 
         binding.list.adapter = adapter

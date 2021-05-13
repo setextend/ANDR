@@ -9,4 +9,5 @@
     <string name="likes">likes</string>
     <string name="share">share</string>
     <string name="views">views</string>
+    <string name="menu_remove">remove</string>
 </resources>
