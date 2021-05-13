@@ -40,6 +40,9 @@ dependencies {
     def lifecycle_version = "2.3.1"
     def arch_version = "2.1.0"
     def activity_version = "1.2.3"
+    def recyclerview_version = "1.2.0"
+
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
 
     implementation "androidx.activity:activity-ktx:$activity_version"
 
