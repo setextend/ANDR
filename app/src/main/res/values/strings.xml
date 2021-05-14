@@ -10,4 +10,8 @@
     <string name="share">share</string>
     <string name="views">views</string>
     <string name="menu_remove">remove</string>
+    <string name="save">save</string>
+    <string name="error_empty_content">error</string>
+    <string name="type_content">type_some_content</string>
+    <string name="menu_edit">edit</string>
 </resources>

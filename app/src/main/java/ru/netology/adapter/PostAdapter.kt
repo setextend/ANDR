@@ -12,9 +12,10 @@ import ru.netology.dto.Post
 
 
 interface AdapterCallBack {
-    fun liked(post: Post)
-    fun shared(post: Post)
-    fun deleted(post: Post)
+    fun liked(post: Post) {}
+    fun shared(post: Post) {}
+    fun deleted(post: Post) {}
+    fun edited(post: Post) {}
 }
 
 class PostAdapter(private val listener: AdapterCallBack) :
@@ -73,6 +74,10 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
                     inflate(R.menu.option_post)
                     setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
+                            R.id.menu_edit -> {
+                                listener.edited(post)
+                                true
+                            }
                             R.id.menu_remove -> {
                                 listener.deleted(post)
                                 true
