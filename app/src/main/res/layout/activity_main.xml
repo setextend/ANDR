@@ -41,6 +41,7 @@
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:minHeight="32dp"
+        android:maxLines="6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnSave"
         app:layout_constraintStart_toStartOf="parent"
