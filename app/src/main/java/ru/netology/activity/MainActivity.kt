@@ -1,9 +1,11 @@
 package ru.netology.activity
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import ru.netology.R
 import ru.netology.adapter.AdapterCallBack
 import ru.netology.adapter.PostAdapter
@@ -72,6 +74,23 @@ class MainActivity : AppCompatActivity() {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(it)
+            }
+        }
+
+        binding.edtContent.doAfterTextChanged {
+            if(viewModel.edited.value?.content != it.toString()) {
+                binding.group.visibility = View.VISIBLE
+            } else {
+                binding.group.visibility  = View.INVISIBLE
+            }
+            with(binding.txtAuthor){
+                setText(viewModel.edited.value?.author)
+            }
+        }
+
+        binding.btnCancel.setOnClickListener {
+            with(binding.edtContent) {
+                setText(viewModel.edited.value?.content)
             }
         }
     }
