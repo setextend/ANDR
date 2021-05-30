@@ -9,4 +9,10 @@
     <string name="likes">понравилось</string>
     <string name="share">поделиться</string>
     <string name="views">просмотров</string>
+    <string name="menu_remove">удалить</string>
+    <string name="save">сохранить</string>
+    <string name="error_empty_content" >Ошибка: пустой текст</string>
+    <string name="type_content">напиши текст поста</string>
+    <string name="menu_edit">редактировать</string>
+    <string name="cancel">cancel</string>
 </resources>

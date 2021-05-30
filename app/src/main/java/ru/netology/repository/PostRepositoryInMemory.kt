@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.dto.Post
 
 class PostRepositoryInMemory : PostRepository {
-    var posts = listOf(
+    private var nextId = 1L
+    private var posts = listOf(
         Post(
-            id = 1,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
             published = "21 мая в 18:36",
@@ -16,7 +17,7 @@ class PostRepositoryInMemory : PostRepository {
             shares = 999999
         ),
         Post(
-            id = 2,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Курсы по веб и мобильной разработке для новичков и junior-разработчиков. Вы освоите профессию разработчика с нуля или добавите в арсенал необходимый язык программирования.",
             published = "21 июня в 10:25",
@@ -25,7 +26,7 @@ class PostRepositoryInMemory : PostRepository {
             shares = 1100
         ),
         Post(
-            id = 3,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Курсы по веб и мобильной разработке для новичков и junior-разработчиков. Вы освоите профессию разработчика с нуля или добавите в арсенал необходимый язык программирования.",
             published = "21 июня в 10:25",
@@ -33,7 +34,7 @@ class PostRepositoryInMemory : PostRepository {
             likes = 1,
             shares = 1
         )
-    )
+    ).reversed()
 
     private val data = MutableLiveData(posts)
 
@@ -44,8 +45,9 @@ class PostRepositoryInMemory : PostRepository {
             if (it.id != id) it
             else
                 it.copy(
-                likes = it.likes + 1 * (if (it.likedByMe) -1 else 1),
-                likedByMe = !it.likedByMe )
+                    likes = it.likes + 1 * (if (it.likedByMe) -1 else 1),
+                    likedByMe = !it.likedByMe
+                )
         }
         data.value = posts
     }
@@ -56,8 +58,42 @@ class PostRepositoryInMemory : PostRepository {
             else
                 it.copy(
                     shares = it.shares + 1,
-                    sharedByMe = true )
+                    sharedByMe = true
+                )
         }
+        data.value = posts
+    }
+
+    override fun removeById(id: Long) {
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        if (post.id == 0L) {
+            posts = listOf(
+                post.copy(
+                    id = nextId++,
+                    author = "Me",
+                    published = "Now",
+                    likedByMe = false,
+                    likes = 0,
+                    shares = 0
+                )
+            ) + posts
+        } else {
+            posts = posts.map {
+                if (it.id != post.id) it
+                else
+                    it.copy(
+                        content = post.content
+                    )
+            }
+        }
+        data.value = posts
+    }
+
+    override fun edit(post: Post) {
         data.value = posts
     }
 

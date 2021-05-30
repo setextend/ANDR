@@ -2,6 +2,7 @@ package ru.netology.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,8 +12,10 @@ import ru.netology.dto.Post
 
 
 interface AdapterCallBack {
-    fun liked(post: Post)
-    fun shared(post: Post)
+    fun liked(post: Post) {}
+    fun shared(post: Post) {}
+    fun deleted(post: Post) {}
+    fun edited(post: Post) {}
 }
 
 class PostAdapter(private val listener: AdapterCallBack) :
@@ -65,6 +68,25 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
 
             shareCount.text = dealWithNumbers(post.shares)
             viewsCount.text = dealWithNumbers(post.views)
+
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.option_post)
+                    setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.menu_edit -> {
+                                listener.edited(post)
+                                true
+                            }
+                            R.id.menu_remove -> {
+                                listener.deleted(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }.show()
+            }
         }
     }
 
