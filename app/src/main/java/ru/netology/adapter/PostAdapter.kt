@@ -43,14 +43,9 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
             content.text = post.content
             published.text = post.published
 
-            likes.setImageResource(
-                if (post.likedByMe)
-                    R.drawable.ic_baseline_favorite_redone_24
-                else
-                    R.drawable.ic_baseline_favorite_24
-            )
+            likes.isChecked = post.likedByMe
 
-            likesCount.text = dealWithNumbers(post.likes)
+            likes.text = " " + dealWithNumbers(post.likes)
 
             likes.setOnClickListener {
                 listener.liked(post)

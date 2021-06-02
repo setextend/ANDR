@@ -79,13 +79,17 @@
         app:constraint_referenced_ids="content" />
 
 
-    <ImageButton
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/likes"
-        android:layout_width="@dimen/posts_avatar_size"
+        style="@style/AppCheckBox"
+        tools:checked="true"
+        tools:text="_1K"
         android:layout_height="@dimen/posts_avatar_size"
+        android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/common_spacing"
         android:background="@color/design_default_color_background"
         android:contentDescription="@string/likes"
+        android:button="@drawable/ic_like_selector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_content"
         app:srcCompat="@drawable/ic_baseline_favorite_24" />
@@ -98,7 +102,7 @@
         android:background="@color/design_default_color_background"
         android:contentDescription="@string/share"
         app:layout_constraintBottom_toBottomOf="@+id/likes"
-        app:layout_constraintStart_toEndOf="@+id/likes_count"
+        app:layout_constraintStart_toEndOf="@+id/likes"
         app:layout_constraintTop_toTopOf="@+id/likes"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
@@ -114,17 +118,6 @@
         app:layout_constraintEnd_toStartOf="@id/views_count"
         app:srcCompat="@drawable/ic_baseline_visibility_24"
         tools:layout_editor_absoluteX="283dp" />
-
-    <TextView
-        android:id="@+id/likes_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/likes"
-        app:layout_constraintStart_toEndOf="@id/likes"
-        app:layout_constraintTop_toBottomOf="@id/barrier_content"
-        app:layout_constraintTop_toTopOf="@id/likes"
-        tools:text="@sample/posts.json/data/favorite" />
 
     <TextView
         android:id="@+id/share_count"
