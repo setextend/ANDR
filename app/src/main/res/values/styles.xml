@@ -3,5 +3,6 @@
 
     <style name="AppCheckBox" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:checkable">true</item>
+        <item name="iconSize">16dp</item>
     </style>
 </resources>

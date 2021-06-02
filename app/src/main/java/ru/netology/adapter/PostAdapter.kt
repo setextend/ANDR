@@ -51,17 +51,13 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
                 listener.liked(post)
             }
 
-            share.setImageResource(
-                if (post.sharedByMe)
-                    R.drawable.ic_baseline_share_redone_24
-                else
-                    R.drawable.ic_baseline_share_24
-            )
+            share.isChecked = post.sharedByMe
+
             share.setOnClickListener {
                 listener.shared(post)
             }
 
-            shareCount.text = dealWithNumbers(post.shares)
+            share.text = dealWithNumbers(post.shares)
             viewsCount.text = dealWithNumbers(post.views)
 
             menu.setOnClickListener {
