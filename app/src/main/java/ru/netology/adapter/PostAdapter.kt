@@ -45,7 +45,7 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
 
             likes.isChecked = post.likedByMe
 
-            likes.text = " " + dealWithNumbers(post.likes)
+            likes.text = dealWithNumbers(post.likes)
 
             likes.setOnClickListener {
                 listener.liked(post)
