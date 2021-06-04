@@ -1,5 +1,6 @@
 package ru.netology.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -25,7 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = PostAdapter(object : AdapterCallBack {
             override fun shared(post: Post) {
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    type = "text/plain"
+                }
                 viewModel.shareById(post.id)
+                val shareIntent = Intent.createChooser(intent, post.author)
+                startActivity(shareIntent)
             }
 
             override fun liked(post: Post) {
@@ -78,12 +85,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.edtContent.doAfterTextChanged {
-            if(viewModel.edited.value?.content != it.toString()) {
+            if (viewModel.edited.value?.content != it.toString()) {
                 binding.group.visibility = View.VISIBLE
             } else {
-                binding.group.visibility  = View.INVISIBLE
+                binding.group.visibility = View.INVISIBLE
             }
-            with(binding.txtAuthor){
+            with(binding.txtAuthor) {
                 setText(viewModel.edited.value?.author)
             }
         }
