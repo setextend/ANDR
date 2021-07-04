@@ -15,4 +15,5 @@
     <string name="type_content">напиши текст поста</string>
     <string name="menu_edit">редактировать</string>
     <string name="cancel">cancel</string>
+    <string name="ok">ok</string>
 </resources>
