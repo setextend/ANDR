@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NMedia">
         <activity android:name=".activity.NewPostActivity"></activity>
-        <activity android:name=".activity.MainActivity2" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
