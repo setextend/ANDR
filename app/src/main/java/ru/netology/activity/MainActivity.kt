@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: PostViewModel by viewModels()
 
+        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
+            result?: return@registerForActivityResult
+            viewModel.changeContent(result)
+            viewModel.save()
+        }
+
         val adapter = PostAdapter(object : AdapterCallBack {
             override fun shared(post: Post) {
                 val intent = Intent().apply {
@@ -47,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun edited(post: Post) {
                 viewModel.edit(post)
+                editPostLauncher.launch(post.content)
             }
         })
 
@@ -57,51 +64,6 @@ class MainActivity : AppCompatActivity() {
             binding.list.scrollToPosition(0)
         }
 
-//        viewModel.edited.observe(this) {
-//            if (it.id != 0L) {
-//                with(binding.edtContent) {
-//                    requestFocus()
-//                    setText(it.content)
-//                }
-//            }
-//        }
-
-//        binding.btnSave.setOnClickListener {
-//            with(binding.edtContent) {
-//                if (text.isNullOrBlank()) {
-//                    Toast.makeText(
-//                        this@MainActivity,
-//                        R.string.error_empty_content,
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    return@setOnClickListener
-//                }
-//
-//                viewModel.changeContent(text.toString())
-//                viewModel.save()
-//
-//                setText("")
-//                clearFocus()
-//                AndroidUtils.hideKeyboard(it)
-//            }
-//        }
-
-//        binding.edtContent.doAfterTextChanged {
-//            if (viewModel.edited.value?.content != it.toString()) {
-//                binding.group.visibility = View.VISIBLE
-//            } else {
-//                binding.group.visibility = View.INVISIBLE
-//            }
-//            with(binding.txtAuthor) {
-//                setText(viewModel.edited.value?.author)
-//            }
-//        }
-//
-//        binding.btnCancel.setOnClickListener {
-//            with(binding.edtContent) {
-//                setText(viewModel.edited.value?.content)
-//            }
-//        }
 
         val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
             result ?: return@registerForActivityResult
