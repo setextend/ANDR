@@ -1,6 +1,7 @@
 package ru.netology.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -55,6 +56,12 @@ class MainActivity : AppCompatActivity() {
                 viewModel.edit(post)
                 editPostLauncher.launch(post.content)
             }
+
+            override fun video(post: Post) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.attVideo))
+                val videoIntent = Intent.createChooser(intent, post.attVideo)
+                startActivity(videoIntent)
+            }
         })
 
         binding.list.adapter = adapter
@@ -63,7 +70,6 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
             binding.list.scrollToPosition(0)
         }
-
 
         val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
             result ?: return@registerForActivityResult

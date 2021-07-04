@@ -77,12 +77,34 @@
         app:layout_constraintTop_toBottomOf="@id/barrier_top"
         tools:text="@sample/posts.json/data/content" />
 
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/videoView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/watch_video"
+        android:text="@string/watch_video"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_round_play_arrow_24"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_attachment"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        tools:layout_editor_absoluteX="7dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_attachment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="videoView"
+  />
 
 
     <com.google.android.material.button.MaterialButton
@@ -99,7 +121,7 @@
         app:iconTint="@color/color_like"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_content"
+        app:layout_constraintTop_toBottomOf="@id/barrier_attachment"
         app:srcCompat="@drawable/ic_baseline_favorite_24"
         tools:checked="true"
         tools:text="_1K"

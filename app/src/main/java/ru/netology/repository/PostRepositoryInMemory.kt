@@ -14,7 +14,8 @@ class PostRepositoryInMemory : PostRepository {
             published = "21 мая в 18:36",
             likedByMe = false,
             likes = 999,
-            shares = 999999
+            shares = 999999,
+            attVideo = "https://youtu.be/EoypNFa53Ns"
         ),
         Post(
             id = nextId++,
@@ -23,7 +24,8 @@ class PostRepositoryInMemory : PostRepository {
             published = "21 июня в 10:25",
             likedByMe = false,
             likes = 998,
-            shares = 1100
+            shares = 1100,
+            attVideo = ""
         ),
         Post(
             id = nextId++,
@@ -32,7 +34,8 @@ class PostRepositoryInMemory : PostRepository {
             published = "21 июня в 10:25",
             likedByMe = true,
             likes = 1,
-            shares = 1
+            shares = 1,
+            attVideo = ""
         )
     ).reversed()
 
@@ -97,5 +100,7 @@ class PostRepositoryInMemory : PostRepository {
         data.value = posts
     }
 
-
+    override fun video() {
+        data.value = posts
+    }
 }

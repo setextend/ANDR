@@ -16,7 +16,8 @@ private val emptyPost = Post(
     shares = 0,
     likedByMe = false,
     sharedByMe = false,
-    viewedByMe = false
+    viewedByMe = false,
+    attVideo = ""
 )
 
 class PostViewModel : ViewModel() {
