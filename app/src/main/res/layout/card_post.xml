@@ -123,18 +123,22 @@
         tools:checked="true"
         tools:text="_1K" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/views"
-        android:layout_width="@dimen/posts_avatar_size"
-        android:layout_height="@dimen/posts_avatar_size"
+        style="@style/AppCheckBox"
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
         android:background="@color/design_default_color_background"
+        android:button="@drawable/ic_baseline_visibility_24"
         android:contentDescription="@string/views"
+        app:icon="@drawable/ic_baseline_visibility_24"
+        app:iconTint="@color/color_share"
         app:layout_constraintBottom_toBottomOf="@id/likes"
         app:layout_constraintEnd_toStartOf="@id/views_count"
         app:layout_constraintTop_toTopOf="@id/likes"
         app:srcCompat="@drawable/ic_baseline_visibility_24"
-        tools:layout_editor_absoluteX="283dp" />
+        tools:layout_editor_absoluteX="156dp" />
 
 
     <TextView
