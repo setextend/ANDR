@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.dto.Post
 import ru.netology.repository.PostRepository
+import ru.netology.repository.PostRepositoryInFiles
 import ru.netology.repository.PostRepositoryInMemory
 import ru.netology.repository.PostRepositorySharedPrefsImpl
 
@@ -24,7 +25,7 @@ private val emptyPost = Post(
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
+    private val repository: PostRepository = PostRepositoryInFiles(application)
     val data = repository.getAll()
     val edited = MutableLiveData(emptyPost)
 
