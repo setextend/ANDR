@@ -14,5 +14,7 @@
     <string name="error_empty_content" >Ошибка: пустой текст</string>
     <string name="type_content">напиши текст поста</string>
     <string name="menu_edit">редактировать</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">отмена</string>
+    <string name="ok">ок</string>
+    <string name="watch_video">смотреть</string>
 </resources>

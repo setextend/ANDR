@@ -11,4 +11,6 @@ interface PostRepository {
 
     fun save(post: Post)
     fun edit(post: Post)
+
+    fun video()
 }

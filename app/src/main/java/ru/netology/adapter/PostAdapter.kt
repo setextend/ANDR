@@ -1,6 +1,7 @@
 package ru.netology.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -16,6 +17,7 @@ interface AdapterCallBack {
     fun shared(post: Post) {}
     fun deleted(post: Post) {}
     fun edited(post: Post) {}
+    fun video(post: Post) {}
 }
 
 class PostAdapter(private val listener: AdapterCallBack) :
@@ -42,6 +44,12 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
             author.text = post.author
             content.text = post.content
             published.text = post.published
+
+            if (!post.attVideo.isEmpty())
+                videoView.visibility = View.VISIBLE
+            else videoView.visibility = View.GONE
+            videoView.text = post.attVideo
+
 
             likes.isChecked = post.likedByMe
 
@@ -78,6 +86,11 @@ class PostViewHolder(private val binding: CardPostBinding, private val listener:
                     }
                 }.show()
             }
+
+            videoView.setOnClickListener {
+                listener.video(post)
+            }
+
         }
     }
 

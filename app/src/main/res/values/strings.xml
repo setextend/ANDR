@@ -15,4 +15,6 @@
     <string name="type_content">type_some_content</string>
     <string name="menu_edit">edit</string>
     <string name="cancel">cancel</string>
+    <string name="ok">ok</string>
+    <string name="watch_video">watch</string>
 </resources>
