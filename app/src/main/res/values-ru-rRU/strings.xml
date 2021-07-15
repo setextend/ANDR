@@ -17,4 +17,5 @@
     <string name="cancel">отмена</string>
     <string name="ok">ок</string>
     <string name="watch_video">смотреть</string>
+    <string name="add_post">Add post</string>
 </resources>
