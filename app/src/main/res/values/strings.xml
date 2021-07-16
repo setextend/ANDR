@@ -18,4 +18,12 @@
     <string name="ok">ok</string>
     <string name="watch_video">watch</string>
     <string name="add_post">Add post</string>
+    <string name="channel_like_name" />
+    <string name="channel_newPost_name" />
+    <string name="channel_like_description" />
+    <string name="channel_new_post_description" />
+    <string name="notification_user_liked" />
+    <string name="notification_user_new_post" />
+    <string name="channel_remote_name" />
+    <string name="channel_remote_description" />
 </resources>
