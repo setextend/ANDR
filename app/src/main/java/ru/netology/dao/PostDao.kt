@@ -24,6 +24,14 @@ interface PostDao {
             """
     )
     fun likeById(id: Long)
+
+    @Query(
+        """
+                UPDATE PostEntity SET
+                    shares = shares + 1
+                WHERE id = :id
+            """
+    )
     fun shareById(id: Long)
 
     @Query("DELETE FROM PostEntity WHERE id = :id")
@@ -35,7 +43,4 @@ interface PostDao {
     fun save(post: PostEntity) =
         if (post.id == 0L) insert(post) else updateContentById(post.id, post.content)
 
-    fun edit(post: PostEntity)
-
-    fun video()
 }
