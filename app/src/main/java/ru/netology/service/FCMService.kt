@@ -43,17 +43,16 @@ class FCMService : FirebaseMessagingService() {
     }
 
     override fun onNewToken(token: String) {
-        println(token)
+        println("TOKEN"+token)
     }
 
     private fun handleLike(content: Like) {
         val notification = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(
-                getString(
-                    R.string.notification_user_liked,
-                    content.userName,
-                    content.postAuthor,
+                getString(R.string.notification_user_liked,
+                content.userName,
+                content.postAuthor
                 )
             )
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

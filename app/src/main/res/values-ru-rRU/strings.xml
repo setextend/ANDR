@@ -18,12 +18,13 @@
     <string name="ok">ок</string>
     <string name="watch_video">смотреть</string>
     <string name="add_post">Add post</string>
-    <string name="channel_like_name" />
-    <string name="channel_newPost_name" />
-    <string name="channel_like_description" />
-    <string name="channel_new_post_description" />
-    <string name="notification_user_liked" />
-    <string name="notification_user_new_post" />
-    <string name="channel_remote_name" />
-    <string name="channel_remote_description" />
+    <string name="channel_like_name" >Add post</string>
+    <string name="channel_newPost_name" >Add post</string>
+    <string name="channel_like_description" >Add post</string>
+    <string name="channel_new_post_description" >Add post</string>
+    <string name="notification_user_liked" >Add post</string>
+    <string name="notification_user_new_post" >Add post</string>
+    <string name="channel_remote_name" >Add post</string>
+    <string name="channel_remote_description" >Add post</string>
+    <string name="msg_token_fmt">Add post</string>
 </resources>
