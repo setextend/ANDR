@@ -18,4 +18,8 @@
     <string name="ok">ok</string>
     <string name="watch_video">watch</string>
     <string name="add_post">Add post</string>
+    <string name="notification_user_new_post" translatable="false">User %1$s created new post : %2$s</string>
+    <string name="notification_user_liked">User %1$s liked %2$s\'s post</string>
+    <string name="channel_remote_name">Server notifications</string>
+    <string name="channel_remote_description">Notifications from remote server</string>
 </resources>

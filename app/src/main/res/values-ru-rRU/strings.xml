@@ -18,4 +18,7 @@
     <string name="ok">ок</string>
     <string name="watch_video">смотреть</string>
     <string name="add_post">Add post</string>
+    <string name="notification_user_liked">%1$s поставил лайк посту %2$s</string>
+    <string name="channel_remote_name">Уведомления с сервера</string>
+    <string name="channel_remote_description">Уведомления с удалённого сервера</string>
 </resources>
