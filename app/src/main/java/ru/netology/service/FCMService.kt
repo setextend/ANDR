@@ -14,9 +14,10 @@ import kotlin.random.Random
 
 
 class FCMService : FirebaseMessagingService() {
+    private val channelId = "remote"
+
     private val action = "action"
     private val content = "content"
-    private val channelId = "remote"
     private val gson = Gson()
 
     override fun onCreate() {
@@ -34,16 +35,16 @@ class FCMService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
-
         message.data[action]?.let {
             when (Action.valueOf(it)) {
                 Action.LIKE -> handleLike(gson.fromJson(message.data[content], Like::class.java))
+                Action.NEW -> handleNew(gson.fromJson(message.data[content], New::class.java))
             }
         }
     }
 
     override fun onNewToken(token: String) {
-        println("TOKEN"+token)
+        println(token)
     }
 
     private fun handleLike(content: Like) {
@@ -61,10 +62,26 @@ class FCMService : FirebaseMessagingService() {
         NotificationManagerCompat.from(this)
             .notify(Random.nextInt(100_000), notification)
     }
+
+    private fun handleNew(content: New) {
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(
+                getString(R.string.notification_user_new_post,
+                    content.userName,
+                    content.postContent
+                )
+            )
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
+
+        NotificationManagerCompat.from(this)
+            .notify(Random.nextInt(100_000), notification)
+    }
 }
 
 enum class Action {
-    LIKE,
+    LIKE, NEW
 }
 
 data class Like(
@@ -72,4 +89,11 @@ data class Like(
     val userName: String,
     val postId: Long,
     val postAuthor: String,
+)
+
+data class New(
+    val userId: Long,
+    val userName: String,
+    val postId: Long,
+    val postContent: String,
 )
